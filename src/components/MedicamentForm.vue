@@ -137,10 +137,10 @@ function submitForm(){
 <template>
   <v-dialog v-model="dialog" max-width="500px">
     <template v-slot:activator="{ props }">
-      <v-btn v-bind="props" color="teal-lighten-2" class="ma-2" prepend-icon="mdi-plus">
-        Ajouter Médicament
-      </v-btn>
-    </template>
+  <v-btn v-bind="props" color="teal-lighten-2" class="ma-2" prepend-icon="mdi-plus">
+    <span class="d-none d-sm-inline">Ajouter Médicament</span>
+  </v-btn>
+    </template> 
 
     <v-card>
       <v-card-title class="text-h6">
@@ -168,8 +168,14 @@ function submitForm(){
       </v-card-text>
 
       <v-card-actions class="d-flex justify-end">
-        <v-btn color="red-lighten-2" variant="text" @click="closePopup">Annuler</v-btn>
-        <v-btn color="teal-lighten-2" variant="flat" @click="submitForm">{{ isEditing ? "💾 Sauvegarder" : "➕ Ajouter" }}</v-btn>
+          <v-btn color="red-lighten-2" variant="text" @click="closePopup" prepend-icon="mdi-close">Annuler</v-btn>
+          <v-btn 
+              color="teal-lighten-2" 
+              variant="flat"  
+              @click="submitForm"
+              :prepend-icon="isEditing ? 'mdi-content-save' : 'mdi-plus'"
+          >{{ isEditing ? "Sauvegarder" : "Ajouter" }}
+          </v-btn>
       </v-card-actions>
     </v-card>
 
