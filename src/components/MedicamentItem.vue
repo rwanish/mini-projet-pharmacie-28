@@ -48,8 +48,7 @@ const attenteModif = (medicament) => {
   <v-card
     :disabled="loading"
     :loading="loading"
-    class="mx-5 my-5 text-center"
-    max-width="374"
+    class="text-center"
   >
     <template v-slot:loader="{ isActive }">
       <v-progress-linear
@@ -61,13 +60,13 @@ const attenteModif = (medicament) => {
     </template>
 
     <!-- Conteneur principal -->
-    <div class="medicament-container ga-3">
+    <div class="medicament-container">
       <!-- Image centrée -->
       <div v-if="medicament.photo" class="d-flex justify-center">
         <img 
           :src="medicament.photo.startsWith('data:image') ? medicament.photo : 'https://apipharmacie.pecatte.fr/images/' + medicament.photo"  
           alt="Image du médicament" 
-          height="130"
+          height="110"
         />
       </div>
 

@@ -9,6 +9,9 @@ const props = defineProps({
 // Émission de l'événement d'ajout et de modifier
 const emit = defineEmits(["addMedicament", "updateMedicament"]);
 
+// Permet d'ouvrir/fermer le popup quand on click le bouton (POPUP Forme)
+const dialog = ref(false);
+
 //Copie locale du médicament pour éviter les problèmes de réactivité
 const medicamentLocal = reactive({
   id: null,
@@ -21,7 +24,7 @@ const medicamentLocal = reactive({
 const isEditing = ref(false); // Vérifie si on est en mode édition
 
 // Fonction pour gérer l'upload de l'image
-const handleFileUpload = (event) => {
+const handleFileUpload = (event) =>  {
   const file = event.target.files[0];
   if (!file) return; // Si l'utilisateur annule la sélection du fichier, on ne fait rien
 
@@ -110,31 +113,49 @@ function submitForm(){
   }
 
   resetForm();
+  dialog.value = false; // Ferme le popup après validation
 };
 
 </script>
 
 <template>
-    <form @submit.prevent="submitForm">
-    <h4 v-if="isEditing">Modifier un Médicament</h4>
-    <h4 v-else>Ajouter un Médicament</h4>
+  <v-dialog v-model="dialog" max-width="500px">
+    <template v-slot:activator="{ props }">
+      <v-btn v-bind="props" color="teal-darken-3" class="ma-2">
+        ➕ Ajouter Médicament
+      </v-btn>
+    </template>
 
-    <!-- Affichage de l'image actuelle si elle existe -->
-    <div v-if="medicamentLocal.photo">
-      <img :src="medicament.photo.startsWith('data:image') ? medicament.photo : 'https://apipharmacie.pecatte.fr/images/' + medicament.photo"  
-      alt="Image du médicament" width="100" />
-    </div>
+    <v-card>
+      <v-card-title class="text-h6">
+        {{ isEditing ? "Modifier un Médicament" : "Ajouter un Médicament" }}
+      </v-card-title>
+      <v-card-text>
+        <v-form @submit.prevent="submitForm">
 
-    <input v-model="medicamentLocal.denomination" placeholder="Dénomination" required />
-    <input v-model.number="medicamentLocal.qte" type="number" placeholder="Quantité" min="0" required />
-    <input v-model="medicamentLocal.formepharmaceutique" placeholder="Forme Pharmaceutique" required />
-    
+          <!-- Affichage de l'image -->
+          <div v-if="medicamentLocal.photo" class="text-center mb-3">
+            <img
+              :src="medicamentLocal.photo.startsWith('data:image') ? medicamentLocal.photo : 'https://apipharmacie.pecatte.fr/images/' + medicamentLocal.photo"
+              alt="Image du médicament"
+              width="100"
+            />
+          </div>
 
-    <!-- Ajouter un champ pour télécharger une nouvelle photo -->
-    <input type="file" @change="handleFileUpload" />
+          <v-text-field v-model="medicamentLocal.denomination" label="Dénomination" required />
+          <v-text-field v-model.number="medicamentLocal.qte" type="number" label="Quantité" min="0" required />
+          <v-text-field v-model="medicamentLocal.formepharmaceutique" label="Forme Pharmaceutique" required />
 
-    
-    <button type="submit">{{ isEditing ? "💾 Sauvegarder" : "➕ Ajouter" }}</button>
-    <button v-if="isEditing" @click="resetForm" type="button">❌ Annuler</button>
-    </form>
+          <!-- Ajouter un champ pour télécharger une nouvelle photo -->
+          <v-file-input label="Télécharger une photo" @change="handleFileUpload"></v-file-input>
+        </v-form>
+      </v-card-text>
+
+      <v-card-actions class="d-flex justify-end">
+        <v-btn color="red-lighten-2" variant="text" @click="dialog = false">Annuler</v-btn>
+        <v-btn color="teal-lighten-2" variant="flat" @click="submitForm">{{ isEditing ? "💾 Sauvegarder" : "➕ Ajouter" }}</v-btn>
+      </v-card-actions>
+    </v-card>
+
+  </v-dialog>
 </template>

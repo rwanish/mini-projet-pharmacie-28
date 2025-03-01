@@ -14,6 +14,8 @@ const medicamentSelectionne = ref({
   photo: null
 }); // Stocke le médicament en cours d'édition
 
+const isPopupVisible = ref(false);// Contrôle l'état d'une variable reactive
+
 // -- l'url de l'API
 const url = " https://apipharmacie.pecatte.fr/api/28/medicaments";
 
@@ -158,6 +160,7 @@ function handlerEdit(medicament) {
   };
   
   console.log("✅ Après handlerEdit :", medicamentSelectionne);
+  isPopupVisible.value = true; // Asegura que el popup se abra
 }
 
 
@@ -250,16 +253,20 @@ function handlerDelete(id) {
   @updateMedicament="handlerUpdate" 
   />
 
+    <v-title class="text-h6 d-flex justify-center align-center">
+      <strong>Liste des Médicaments</strong>
+    </v-title>
 
-    <h2>Liste des Médicaments</h2>
-        
-    <input v-model="searchQuery" @input="searchMedicaments(searchQuery)" placeholder="Rechercher un médicament" style="margin:auto;max-width:300px"/>
-
+    <div class="search-container">
+    <input v-model="searchQuery" @input="searchMedicaments(searchQuery)" placeholder="Rechercher un médicament..." class="search-box"/>
+    </div>
   
   <!-- Liste filtrée -->
     <v-container>
-      <v-row>
+      <v-row justify="center" class="gap-1">
         <v-col
+          class="d-flex justify-center pa-4"
+          cols="12" sm="8" md="6" lg="4"
           v-for="medicament in filteredMedicaments"
           :key="medicament.id"
       >
@@ -282,17 +289,30 @@ function handlerDelete(id) {
 
 
 <style scoped>
-.v-text-field {
-  position: relative !important;
-  z-index: 1000 !important;
+.search-container {
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+  width: 100%;
+  margin: 20px 0;
 }
 
-input{
-  width: 260px;
+.search-box {
+  width: 100%;  /* S'adapte au container */
+  max-width: 560px;  /* Max longueur dans grands écrans */
   border: 1px solid #555;
+  border-radius: 4px;
   display: block;
   padding: 9px 4px 9px 40px;
   background: transparent url("../assets/search.svg") no-repeat 13px;
+}
+
+/* Media Query pour écrans petits */
+@media (max-width: 600px) {
+  .search-box {
+    max-width: 90%;
+    padding: 9px 4px 9px 35px;
+  }
 }
 
 
