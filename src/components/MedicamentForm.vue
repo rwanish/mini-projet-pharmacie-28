@@ -4,13 +4,19 @@ import ListeMedicament from "./ListeMedicament.vue";
 
 const props = defineProps({
   medicament: Object, // Reçoit un médicament à modifier si présent
+  isPopupVisible: Boolean, // Ajout de la prop pour contrôler la visibilité du popup
 });
 
 // Émission de l'événement d'ajout et de modifier
-const emit = defineEmits(["addMedicament", "updateMedicament"]);
+const emit = defineEmits(["addMedicament", "updateMedicament", "closePopup"]);
 
 // Permet d'ouvrir/fermer le popup quand on click le bouton (POPUP Forme)
 const dialog = ref(false);
+// Faire en sorte que `dialog` réagisse à `isPopupVisible`
+watch(() => props.isPopupVisible, (newVal) => {
+  dialog.value = newVal;
+});
+
 
 //Copie locale du médicament pour éviter les problèmes de réactivité
 const medicamentLocal = reactive({
@@ -47,6 +53,13 @@ function resetForm() {
   });
   isEditing.value = false;
 }
+
+function closePopup() {
+  dialog.value = false;
+  emit("closePopup"); // Informe le parent que le popup doit être fermé
+}
+
+
 
 //  Watch pour détecter un changement dans le médicament sélectionné
 watch(
@@ -113,16 +126,19 @@ function submitForm(){
   }
 
   resetForm();
-  dialog.value = false; // Ferme le popup après validation
+  closePopup(); 
 };
+
+
+
 
 </script>
 
 <template>
   <v-dialog v-model="dialog" max-width="500px">
     <template v-slot:activator="{ props }">
-      <v-btn v-bind="props" color="teal-darken-3" class="ma-2">
-        ➕ Ajouter Médicament
+      <v-btn v-bind="props" color="teal-lighten-2" class="ma-2" prepend-icon="mdi-plus">
+        Ajouter Médicament
       </v-btn>
     </template>
 
@@ -152,7 +168,7 @@ function submitForm(){
       </v-card-text>
 
       <v-card-actions class="d-flex justify-end">
-        <v-btn color="red-lighten-2" variant="text" @click="dialog = false">Annuler</v-btn>
+        <v-btn color="red-lighten-2" variant="text" @click="closePopup">Annuler</v-btn>
         <v-btn color="teal-lighten-2" variant="flat" @click="submitForm">{{ isEditing ? "💾 Sauvegarder" : "➕ Ajouter" }}</v-btn>
       </v-card-actions>
     </v-card>

@@ -247,11 +247,6 @@ function handlerDelete(id) {
 
 <template>
   
-  <MedicamentForm 
-  :medicament="medicamentSelectionne"
-  @addMedicament="handlerAdd" 
-  @updateMedicament="handlerUpdate" 
-  />
 
     <v-title class="text-h6 d-flex justify-center align-center">
       <strong>Liste des Médicaments</strong>
@@ -259,6 +254,13 @@ function handlerDelete(id) {
 
     <div class="search-container">
     <input v-model="searchQuery" @input="searchMedicaments(searchQuery)" placeholder="Rechercher un médicament..." class="search-box"/>
+    <MedicamentForm 
+        :medicament="medicamentSelectionne"
+        :isPopupVisible="isPopupVisible"
+        @addMedicament="handlerAdd" 
+        @updateMedicament="handlerUpdate" 
+        @closePopup="isPopupVisible = false"
+    />
     </div>
   
   <!-- Liste filtrée -->
