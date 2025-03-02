@@ -246,7 +246,6 @@ function handlerDelete(id) {
 </script>
 
 <template>
-  
 
     <v-title class="text-h6 d-flex justify-center align-center">
       <strong>Liste des Médicaments</strong>
