@@ -3,6 +3,7 @@
       <v-row justify="center" class="pa-4">
         <v-col cols="12" sm="4" class="text-center">
           <strong>En collaboration avec</strong>
+          <v-img class="h-25" src="@/assets/logo-ISIS-horizontal.png"></v-img>
         </v-col>
         <v-col cols="12" sm="4" class="text-center">
           <strong>Designé par</strong> Dana Torrano
@@ -15,4 +16,3 @@
       </v-row>
     </v-footer>
   </template>
-  
