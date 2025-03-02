@@ -1,9 +1,14 @@
 <script setup>
 import { ref, reactive, onMounted, computed, watch } from "vue";
-import MedicamentItem from "./MedicamentItem.vue";
-import MedicamentForm from "./MedicamentForm.vue";
+import MedicamentItem from "../components/MedicamentItem.vue";
+import MedicamentForm from "../components/MedicamentForm.vue";
 import Medicament from "../Medicament.js";
 import debounce from "lodash.debounce"; // Import de debounce (https://codecourse.com/articles/debounce-input-in-vue-3)
+
+
+const props = defineProps({
+  searchQuery: String, // Reçoit la recherche depuis App.vue
+});
 
 const listeMedicaments = reactive([]); // Stocke les médicaments
 const medicamentSelectionne = ref({
@@ -29,6 +34,12 @@ const debouncedSearch = ref("");
 watch(searchQuery, debounce((newVal) => {
   debouncedSearch.value = newVal;
 }, 300)); // Attente de 300ms avant d'appliquer la recherche
+
+// Met à jour `searchQuery` quand la prop change (depuis Navbar)
+watch(() => props.searchQuery, (newVal) => {
+  searchQuery.value = newVal;
+});
+
 
 // Filtrage des médicaments
 const filteredMedicaments = computed(() => {

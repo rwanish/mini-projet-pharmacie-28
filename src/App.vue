@@ -1,33 +1,34 @@
 <template>
   <v-app>
-    <Navbar @update:searchQuery="searchQuery = $event" @addMedicament="isPopupVisible = true" />
+    <!-- Navbar avec événements -->
+    <Navbar @update-search="updateSearchQuery" @add-medicament="isPopupVisible = true" />
 
     <v-main>
-    <ListeMedicament :searchQuery="searchQuery" />
+      <v-container>
+      <router-view :searchQuery="debouncedSearch"/>
+      </v-container>
+      <!-- Formulaire d'ajout de médicament en popup -->
       <MedicamentForm 
-      v-if="isPopupVisible" 
-      :isPopupVisible="isPopupVisible"
-      @addMedicament="handlerAdd"
-      @updateMedicament="handlerUpdate"
-      @closePopup="isPopupVisible = false"
-    />
+        v-if="isPopupVisible" 
+        :isPopupVisible="isPopupVisible"
+        @addMedicament="(med) => { handlerAdd(med); $emit('refreshList'); }"
+        @updateMedicament="handlerUpdate"
+        @closePopup="isPopupVisible = false"
+      />
     </v-main>
 
-    <!-- Ajout dun bouton flottant pour naviguer vers la liste des médicaments -->
-    <v-fab-transition>
-      <v-btn fab color="teal-lighten-2" to="/medicaments" class="fab">
+    <!-- Bouton flottant centré en haut -->
+    <v-btn fab color="teal-lighten-2" class="fab-button" to="/medicaments">
       <v-icon>mdi-pill</v-icon>
-      </v-btn>
-    </v-fab-transition>
-    
-    <!-- router-view endroit où le contenu des pages s'affichera -->
-    <router-view></router-view>
+    </v-btn>
+
+    <!-- Footer fixe -->
     <Footer />
   </v-app>
 </template>
 
 <style scoped>
-.fab {
+.fab-button {
   position: fixed;
   bottom: 20px;
   right: 20px;
@@ -35,25 +36,36 @@
 </style>
 
 <script>
-import { ref } from "vue";
+import { ref, watch } from "vue";
+import debounce from "lodash.debounce";
 import Navbar from '@/components/Navbar.vue';
 import Footer from '@/components/Footer.vue';
-import ListeMedicament from "./components/ListeMedicament.vue";
-import MedicamentForm from "./components/MedicamentForm.vue";
-
-const searchQuery = ref("");
-const isPopupVisible = ref(false);
-
-// Fonction pour ajouter un médicament (déjà existante)
-function handlerAdd(medicament) {
-  console.log("Ajout d’un médicament :", medicament);
-  isPopupVisible.value = false; // Fermer le popup après ajout
-}
-
+import MedicamentForm from "@/components/MedicamentForm.vue";
+import { useRouter } from "vue-router"; 
 export default {
   components: {
     Navbar,
-    Footer
+    Footer,
+    MedicamentForm,
+  },
+  setup() {
+    const searchQuery = ref("");
+    const debouncedSearch = ref("");
+
+    const router = useRouter();
+    console.log("Rutas disponibles:", router.getRoutes()); //Si /medicament n'apparaît pas dans la console Vue Router ne le detecte pas 
+
+
+    function updateSearchQuery(newQuery) {
+  searchQuery.value = newQuery; // Mise à jour immédiate
+  } 
+    
+    function handlerAdd(medicament) {
+      console.log("Ajout d’un médicament :", medicament);
+      isPopupVisible.value = false; // Fermer le popup après ajout
+    }
+
+    return { searchQuery, debouncedSearch, updateSearchQuery, handlerAdd };
   }
 };
 </script>

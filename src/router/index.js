@@ -1,23 +1,14 @@
-/**
- * router/index.ts
- *
- * Automatic routes for `./src/pages/*.vue`
- */
-
-// Composables
-import { createRouter, createWebHistory } from "vue-router/auto";
-//import { setupLayouts } from 'virtual:generated-layouts'
-import Home from "@/views/Home.vue";
-import Medicament from "@/views/Medicament.vue";
+import { createRouter, createWebHistory } from "vue-router";
+import Home from "@/pages/index.vue";
+import Medicaments from "@/pages/medicaments.vue";
 
 const routes = [
   { path: "/", component: Home },
-  { path: "/medicaments", component: Medicament },
+  { path: "/medicaments", component: Medicaments },
 ];
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
-  // extendRoutes: setupLayouts,
+  history: createWebHistory(),
   routes,
 });
 

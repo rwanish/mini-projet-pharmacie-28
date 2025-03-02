@@ -14,6 +14,7 @@ import App from "./App.vue";
 import { createApp } from "vue";
 
 import router from "./router";
+import vuetify from "./plugins/vuetify";
 
 // Import du fichier SCSS principal
 import "./scss/main.scss";
@@ -22,6 +23,7 @@ const app = createApp(App);
 
 registerPlugins(app); // Ici, Vuetify est déjà inclus dans registerPlugins
 
-app.mount("#app"); // On monte l'application ici
-
 app.use(router);
+app.use(vuetify);
+
+app.mount("#app"); // On monte l'application ici
