@@ -1,6 +1,6 @@
 <script setup>
 import { defineProps, reactive, ref, watch, defineEmits } from "vue";
-import ListeMedicament from "./ListeMedicament.vue";
+import ListeMedicament from "../components/ListeMedicament.vue";
 
 const props = defineProps({
   medicament: Object, // Reçoit un médicament à modifier si présent
