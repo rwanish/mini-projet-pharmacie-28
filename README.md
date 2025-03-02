@@ -19,8 +19,8 @@ APIthérapie est une application web permettant de gérer le stock de médicamen
 
 L'application a été conçue avec une approche **Mobile-First** pour garantir une navigation optimale sur mobile et desktop.
 
-🔹 Interface intuitive avec des **cards** pour afficher les médicaments\
-🔹 Design responsive pensé en priorité pour le mobile afin d'assurer une expérience utilisateur fluide sur tous les écrans\
+- Interface intuitive avec des **cards** pour afficher les médicaments\
+- Design responsive pensé en priorité pour le mobile afin d'assurer une expérience utilisateur fluide sur tous les écrans\
 
 
 ---
