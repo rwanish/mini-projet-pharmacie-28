@@ -24,7 +24,8 @@ L'application a été conçue avec une approche **Mobile-First** pour garantir u
   ![](/resultats-readme/screenshot-1740940392896.png)
 - Design responsive pensé en priorité pour le mobile afin d'assurer une expérience utilisateur fluide sur tous les écrans
 ![](/resultats-readme/1740939898348.jpg) ![](/resultats-readme/1740939898278.jpg)
-
+<img src="/resultats-readme/1740939898348.jpg" width="48">
+<img src="/resultats-readme/1740939898278.jpg" width="48">
 ---
 
 ## 🚀 Améliorations futures
