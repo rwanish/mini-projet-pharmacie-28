@@ -15,7 +15,7 @@
         <strong>2025</strong> - Dana Torrano
       </v-col>
       <v-col cols="12" sm="4" class="text-center">
-        <v-btn icon color="white" class="mx-1" href="https://github.com/vuetifyjs/vuetify/">
+        <v-btn icon color="white" class="mx-1" href="https://github.com/rwanish/mini-projet-pharmacie-28">
           <v-icon>mdi-github</v-icon>
         </v-btn>
       </v-col>
