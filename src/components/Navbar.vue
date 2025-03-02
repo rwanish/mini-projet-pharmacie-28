@@ -1,29 +1,29 @@
 <template>
   <v-app-bar color="teal-lighten-2" dense>
-    <v-toolbar-title>Mediluz</v-toolbar-title>
+    <v-container class="d-flex justify-space-between align-center">
+      <h1>Ma Pharmacie</h1>
+      
+      <!-- Champ de recherche -->
+      <v-text-field 
+        v-model="search"
+        label="Rechercher un médicament..."
+        dense
+        outlined
+        hide-details
+        clearable
+        @update:modelValue="$emit('update:searchQuery', search)"
+      ></v-text-field>
 
-    <v-spacer></v-spacer>
-
-    <v-text-field
-      v-model="search"
-      label="Rechercher..."
-      append-inner-icon="mdi-magnify"
-      dense
-      solo
-      hide-details
-    ></v-text-field>
-
-    <v-btn color="primary" class="ml-4">+ Ajouter médicament</v-btn>
-    <v-btn class="ml-4">Se déconnecter</v-btn>
+      <!-- Bouton Ajouter un Médicament -->
+      <v-btn @click="$emit('addMedicament')" color="white" outlined>
+        Ajouter Médicament
+      </v-btn>
+    </v-container>
   </v-app-bar>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      search: ''
-    };
-  }
-};
+<script setup>
+import { ref } from "vue";
+
+const search = ref("");
 </script>
