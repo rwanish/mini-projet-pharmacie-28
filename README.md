@@ -1,79 +1,83 @@
-# Vuetify (Default)
+# 💊 APIthérapie - Gestion de Stock de Médicaments
 
-This is the official scaffolding tool for Vuetify, designed to give you a head start in building your new Vuetify application. It sets up a base template with all the necessary configurations and standard directory structure, enabling you to begin development without the hassle of setting up the project from scratch.
+## 🏥 À propos
 
-## ❗️ Important Links
+APIthérapie est une application web permettant de gérer le stock de médicaments d'une pharmacie. Ce projet se concentre sur le développement du **frontend** en utilisant **Vuetify**, avec les données fournies par une API externe : [https://apipharmacie.pecatte.fr](https://apipharmacie.pecatte.fr).
 
-- 📄 [Docs](https://vuetifyjs.com/)
-- 🚨 [Issues](https://issues.vuetifyjs.com/)
-- 🏬 [Store](https://store.vuetifyjs.com/)
-- 🎮 [Playground](https://play.vuetifyjs.com/)
-- 💬 [Discord](https://community.vuetifyjs.com)
+### 💡 Fonctionnalités principales :
 
-## 💿 Install
+✅ Affichage de la liste des médicaments 
+✅ Recherche d'un médicament 
+✅ Ajout d'un nouveau médicament 
+✅ Suppression d'un médicament 
+✅ Modification des informations d'un médicament 
+✅ Augmentation et diminution des quantités de stock
 
-Set up your project using your preferred package manager. Use the corresponding command to install the dependencies:
+---
 
-| Package Manager                                                | Command        |
-|---------------------------------------------------------------|----------------|
-| [yarn](https://yarnpkg.com/getting-started)                   | `yarn install` |
-| [npm](https://docs.npmjs.com/cli/v7/commands/npm-install)     | `npm install`  |
-| [pnpm](https://pnpm.io/installation)                          | `pnpm install` |
-| [bun](https://bun.sh/#getting-started)                        | `bun install`  |
+## 📸 Résultat
 
-After completing the installation, your environment is ready for Vuetify development.
+L'application a été conçue avec une approche **Mobile-First** pour garantir une navigation optimale sur mobile et desktop.
 
-## ✨ Features
+🔹 Interface intuitive avec des **cards** pour afficher les médicaments\
+🔹 Design responsive pensé en priorité pour le mobile (approche Mobile-First) afin d'assurer une expérience utilisateur fluide sur tous les écrans\
 
-- 🖼️ **Optimized Front-End Stack**: Leverage the latest Vue 3 and Vuetify 3 for a modern, reactive UI development experience. [Vue 3](https://v3.vuejs.org/) | [Vuetify 3](https://vuetifyjs.com/en/)
-- 🗃️ **State Management**: Integrated with [Pinia](https://pinia.vuejs.org/), the intuitive, modular state management solution for Vue.
-- 🚦 **Routing and Layouts**: Utilizes Vue Router for SPA navigation and vite-plugin-vue-layouts for organizing Vue file layouts. [Vue Router](https://router.vuejs.org/) | [vite-plugin-vue-layouts](https://github.com/JohnCampionJr/vite-plugin-vue-layouts)
-- ⚡ **Next-Gen Tooling**: Powered by Vite, experience fast cold starts and instant HMR (Hot Module Replacement). [Vite](https://vitejs.dev/)
-- 🧩 **Automated Component Importing**: Streamline your workflow with unplugin-vue-components, automatically importing components as you use them. [unplugin-vue-components](https://github.com/antfu/unplugin-vue-components)
 
-These features are curated to provide a seamless development experience from setup to deployment, ensuring that your Vuetify application is both powerful and maintainable.
+---
 
-## 💡 Usage
+## 🚀 Améliorations futures
 
-This section covers how to start the development server and build your project for production.
+🔹 **Navbar** :
 
-### Starting the Development Server
+- Intégrer la fonctionnalité de recherche directement dans la barre de navigation.
+- Ajouter un bouton "+" permettant l'ajout rapide d'un médicament.
 
-To start the development server with hot-reload, run the following command. The server will be accessible at [http://localhost:3000](http://localhost:3000):
+🔹 **Bouton FAB (floating action button)** :
+
+- Actuellement utilisé pour les médicaments, mais possibilité d'ajouter d'autres catégories (cosmétiques, suppléments, hygiène...)
+
+🔹 **Confirmation de suppression** :
+
+- Ajout d'une pop-up de confirmation avant la suppression d'un médicament.
+
+---
+
+## 📚 Ressources
+
+### 🎨 Programmation
+
+- [Changer la police par défaut dans Vuetify](https://noakash.medium.com/vuetify-default-font-change-7c428e2c7955)
+- [Tutoriel Vuetify](https://www.youtube.com/watch?v=2uZYKcKHgU0\&list=PL4cUxeGkcC9g0MQZfHwKcuB0Yswgb3gA5)
+- [Material Design 3](https://m3.material.io/)
+- [Icônes Material Design](https://pictogrammers.github.io/@mdi/font/4.5.95/)
+- [Documentation Vuetify](https://vuetifyjs.com/en/components/all/)
+- Outils IA : ChatGPT
+
+### 👀 Inspiration visuelle et UX
+
+- [Farmacia Galeno](https://www.farmaciagaleno.com/tiendas-galeno)
+- [Pharma Serena](https://www.pharmaserena.it/fr/7-medicaments)
+- [API Médicaments](https://api-medicaments.fr/)
+
+---
+
+## 🛠️ Comment le télécharger ?
+
+### Project Setup
 
 ```bash
-yarn dev
+npm install
 ```
 
-(Repeat for npm, pnpm, and bun with respective commands.)
-
-> NODE_OPTIONS='--no-warnings' is added to suppress the JSON import warnings that happen as part of the Vuetify import mapping. If you are on Node [v21.3.0](https://nodejs.org/en/blog/release/v21.3.0) or higher, you can change this to NODE_OPTIONS='--disable-warning=5401'. If you don't mind the warning, you can remove this from your package.json dev script.
-
-### Building for Production
-
-To build your project for production, use:
+### Développement
 
 ```bash
-yarn build
+npm run dev
 ```
 
-(Repeat for npm, pnpm, and bun with respective commands.)
+### Production
 
-Once the build process is completed, your application will be ready for deployment in a production environment.
+```bash
+npm run build
+```
 
-## 💪 Support Vuetify Development
-
-This project is built with [Vuetify](https://vuetifyjs.com/en/), a UI Library with a comprehensive collection of Vue components. Vuetify is an MIT licensed Open Source project that has been made possible due to the generous contributions by our [sponsors and backers](https://vuetifyjs.com/introduction/sponsors-and-backers/). If you are interested in supporting this project, please consider:
-
-- [Requesting Enterprise Support](https://support.vuetifyjs.com/)
-- [Sponsoring John on Github](https://github.com/users/johnleider/sponsorship)
-- [Sponsoring Kael on Github](https://github.com/users/kaelwd/sponsorship)
-- [Supporting the team on Open Collective](https://opencollective.com/vuetify)
-- [Becoming a sponsor on Patreon](https://www.patreon.com/vuetify)
-- [Becoming a subscriber on Tidelift](https://tidelift.com/subscription/npm/vuetify)
-- [Making a one-time donation with Paypal](https://paypal.me/vuetify)
-
-## 📑 License
-[MIT](http://opensource.org/licenses/MIT)
-
-Copyright (c) 2016-present Vuetify, LLC
