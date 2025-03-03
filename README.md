@@ -1,5 +1,5 @@
 # 💊 APIthérapie - Gestion de Stock de Médicaments
-Cliquer sur ce [lien](https://jy7jk9-3000.csb.app/) pour y accéder
+Cliquez sur ce [lien](https://jy7jk9-3000.csb.app/) pour y accéder
 
 ## 🏥 À propos
 
